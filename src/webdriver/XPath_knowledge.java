@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class XPath_Example {
+public class XPath_knowledge {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 

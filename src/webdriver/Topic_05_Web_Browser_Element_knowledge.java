@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_05_Web_Browser {
+public class Topic_05_Web_Browser_Element_knowledge {
 	// Khai báo
 	WebDriver driver;
 	WebElement element;
@@ -90,7 +92,75 @@ public class Topic_05_Web_Browser {
 	
 	@Test
 	public void TC_02_Element() {
-		// Các hàm tương tác vs Element sẽ thông qua các element
+		driver.get("https://www.facebook.com/");
+		// Các hàm tương tác vs Element sẽ thông qua cái class WebElement (biến nào đó)
+		
+		// xóa dữ liệu trong 1 field dạng editable có thể nhập
+		// Textbox/ Text area/ Editable Dropdown
+		element.clear();
+		// Nhập dữ liệu vào field dạng editable
+		element.sendKeys("linh@gmail.com");
+		element.sendKeys(Keys.ENTER);
+		// click vào những element: Button/Radio/Link/Checkbox/...
+		element.click();
+		
+		// Các hàm bdau bằng tiền tố "get" thì 100% trả về dữ liệu (kiểu dữ liệu nào đó)
+		// Trả về gtri nằm trong Attribute của Element
+		element.getAttribute("placeholder");
+	
+		driver.findElement(By.id("firstname")).getAttribute("value");
+		
+		// get css value trả về thuộc tính của element này
+		// Font/size/color
+		// Trả về màu nền của element
+		element.getCssValue("background-color");
+		// Trả về font size của element
+		element.getCssValue("font-size");
+		
+		// Test GUI: Point/ Rectangle/ Size (Visualize Testing)
+		element.getLocation();
+		element.getRect();
+		element.getSize();
+		
+		// Chụp hình và attach vào HTML Report
+		element.getScreenshotAs(OutputType.FILE); 
+		
+		// Trả về thẻ HTML của element (ex: input)
+		WebElement emailAddressTextbox = driver.findElement(By.xpath("/input[@id='email']"));
+		emailAddressTextbox = driver.findElement(By.cssSelector("input[id='email']"));
+		emailAddressTextbox.getTagName();
+		// K biết thẻ là gì
+		WebElement emailAddressTextbox1 = driver.findElement(By.xpath("//*[@id='email']"));
+		emailAddressTextbox1 = driver.findElement(By.cssSelector("#email"));
+		
+		//** TRả về text của 1 element (Link/Header/Message lỗi/success/...)
+		element.getText();
+		
+		// Trả về True/False của element có hiển thị hoặc k 
+		// True: hiển thị/enable/chọn rồi 
+		// False: ko hiển thị/Disable/chưa chọn
+		element.isDisplayed();
+		element.isEnabled();
+		// Checkbox/RadioText
+		element.isSelected();
+		// Dropdown list: có 1 thư viện riêng để xử lí (Select)
+		
+		// Chỉ làm việc được với form (register/ login/ search/...- nằm trong thẻ form)
+		// Submit = ENTER của 1 field nào đó trong form (Submit)
+		element.submit();
+		
+		
+		// 2 cách để mình thao tác
+		// Khai báo biến và dùng lại (dùng đi dùng lại nhiều lần - ít nhất 2 lần thì ms cần khai báo biến)
+		
+		// Khai báo biến cùng với kiểu dữ liệu trả về của hàm findElement
+		WebElement emailAddressTextbox2 = driver.findElement(By.id("email")); 
+		emailAddressTextbox.clear();
+		emailAddressTextbox.sendKeys("linh@gmail.com");
+		
+		// Dùng trực tiếp  (dùng 1 lần, k cần khai báo biến)
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("linh@gmail.com");
 	}
 	
 	@AfterClass
