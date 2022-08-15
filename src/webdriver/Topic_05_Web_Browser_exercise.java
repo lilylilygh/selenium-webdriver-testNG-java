@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -13,70 +12,71 @@ import org.testng.annotations.Test;
 
 public class Topic_05_Web_Browser_exercise {
 	// Khai báo
-		WebDriver driver;
-		WebElement element;
-		
-		// Khai báo + Khởi tạo
-		String projectPath = System.getProperty("user.dir"); 		
-		String osName = System.getProperty("os.name");
-		
-		@BeforeClass
-		public void beforeClass() {
-			System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe"); 
-			// Khởi tạo (new)
-			driver = new FirefoxDriver();
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//driver.manage().window().maximize();
-			
-			// Edit
-		}
+	WebDriver driver;
+	String projectPath = System.getProperty("user.dir");
+	String osName = System.getProperty("os.name");
 
-		@Test
-		public void TC_01_Current_Url() {
-			driver.get("http://live.techpanda.org/");
-			driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
-			// Cách 1: khai báo biến rồi get đầu ra/vào bằng nhau
-			//String loginPageUrl = driver.getCurrentUrl();
-			// Assert.assertEquals(loginPageUrl, "http://live.techpanda.org/index.php/customer/account/login/");
-			
-			// Cách 2: k cần khai báo biến (cách tối ưu)
-			Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/login/");
-			driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
-			Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/create/");
-		}
-		
-		public void TC_02_Page_Title() {
-			driver.get("http://live.techpanda.org/");
-			driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
-			Assert.assertEquals(driver.getTitle(), "Customer Login");
-			driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
-			Assert.assertEquals(driver.getTitle(), "Create New Customer Account");	
-		}
-		
-		public void TC_03_Navigation() {
-			
-			driver.get("http://live.techpanda.org/");
-			driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
-			driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
-			Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/create/");
-			driver.navigate().back();
-			Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/login/");
-			driver.navigate().forward();
-			Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/create/");
-			Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
-		}
-		
-		public void TC_04_Page_Source() {
-			
-			driver.get("http://live.techpanda.org/");
-			driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
-			// chứa text dùng assertTrue (contains)
-			Assert.assertTrue(driver.getPageSource().contains("Login or Create an Account"));
-			driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
-			Assert.assertTrue(driver.getPageSource().contains("Create an Account"));
-		}
-		@AfterClass
-		public void afterClass() {
-			driver.quit();
-		}
+	@BeforeClass
+	public void beforeClass() {
+		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		// Edit
+	}
+
+	// @Test đại diện cho 1 TC
+	@Test
+	public void TC_01_Current_Url() {
+		driver.get("http://live.techpanda.org/");
+		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		// Cách 1: khai báo biến rồi get đầu ra/vào bằng nhau
+		// String loginPageUrl = driver.getCurrentUrl();
+		// Assert.assertEquals(loginPageUrl,
+		// "http://live.techpanda.org/index.php/customer/account/login/");
+
+		// Cách 2: k cần khai báo biến (cách tối ưu)
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/login/");
+		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/create/");
+	}
+
+	@Test
+	public void TC_02_Page_Title() {
+		driver.get("http://live.techpanda.org/");
+		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		Assert.assertEquals(driver.getTitle(), "Customer Login");
+		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+		Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
+	}
+
+	@Test
+	public void TC_03_Navigation() {
+
+		driver.get("http://live.techpanda.org/");
+		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/create/");
+		driver.navigate().back();
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/login/");
+		driver.navigate().forward();
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.techpanda.org/index.php/customer/account/create/");
+		Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
+	}
+
+	@Test
+	public void TC_04_Page_Source() {
+
+		driver.get("http://live.techpanda.org/");
+		driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
+		// chứa text dùng assertTrue (contains)
+		Assert.assertTrue(driver.getPageSource().contains("Login or Create an Account"));
+		driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+		Assert.assertTrue(driver.getPageSource().contains("Create an Account"));
+	}
+
+	@AfterClass
+	public void afterClass() {
+		driver.quit();
+	}
 }
