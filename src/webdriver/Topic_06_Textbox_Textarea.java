@@ -27,7 +27,7 @@ public class Topic_06_Textbox_Textarea {
 		editFirstName = "Thuy";
 		editLastName = "Linh";
 		immigrationNumber = "774703475";
-		// \r\n: xuống dòng, cách dòng
+		// \r:cách dòng, \n:xuống dòng
 		comments = "Text box\nText area\nTopic 06";
 	}
 	

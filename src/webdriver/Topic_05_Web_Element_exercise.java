@@ -142,15 +142,6 @@ public class Topic_05_Web_Element_exercise {
 		}
 	}
 	
-	@AfterClass
-	public void sleepInSecond(long timeInSecond) {
-			try {
-				Thread.sleep(timeInSecond * 1000);		// Hàm java
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-	}
-	
 	@Test
 	public void TC_04_MailChimp() {
 		driver.get("https://login.mailchimp.com/signup/post");
@@ -192,6 +183,15 @@ public class Topic_05_Web_Element_exercise {
 		sleepInSecond(2);
 		Assert.assertTrue(driver.findElement(By.cssSelector("input#new_password")).isDisplayed());
 		
+	}
+	
+	@AfterClass
+	public void sleepInSecond(long timeInSecond) {
+			try {
+				Thread.sleep(timeInSecond * 1000);		// Hàm java
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public void afterClass() {
