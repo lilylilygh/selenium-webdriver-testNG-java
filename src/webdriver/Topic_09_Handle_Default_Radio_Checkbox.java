@@ -116,7 +116,24 @@ public class Topic_09_Handle_Default_Radio_Checkbox {
 			Assert.assertFalse(isElementSelected(checkbox));
 			}
 	}
+	
+	@Test
+	public void TC_02_Kendo_jQuery_Select_All() {
+		driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
+		sleepInSecond(10);
 		
+		List<WebElement> allCheckboxes = driver.findElements(By.xpath("//div[@id='example']//input[@type='checkbox']"));
+		
+		// Vừa click + vừa verify
+		for (WebElement checkbox : allCheckboxes) {
+			checkToCheckBoxOrRadio(checkbox);
+		}
+		
+		for (WebElement checkbox : allCheckboxes) {
+			uncheckToCheckBoxOrRadio(checkbox);
+		}
+	}
+	
 	public void checkToCheckBoxOrRadio(String xpathLocator) {
 		/* Kiểm tra trước nó đã chọn hay chưa
 		 * Nếu chọn rồi thì k cần click nữa
@@ -139,9 +156,10 @@ public class Topic_09_Handle_Default_Radio_Checkbox {
 	}
 	
 	public void checkToCheckBoxOrRadio(WebElement element) {
-		if (element.isSelected()) {
+		if (!element.isSelected() && element.isEnabled()) {
 			System.out.println("Click to element: " + element);
 			element.click();
+			Assert.assertTrue(isElementSelected(element));
 		}
 	}
 
@@ -150,9 +168,10 @@ public class Topic_09_Handle_Default_Radio_Checkbox {
 	}
 	
 	public void uncheckToCheckBoxOrRadio(WebElement element) {
-		if (element.isSelected()) {
+		if (element.isSelected() && element.isEnabled()) {
 			System.out.println("Click to element: " + element);
 			element.click();
+			Assert.assertFalse(isElementSelected(element));
 		}
 	}
 	
