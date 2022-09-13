@@ -134,6 +134,18 @@ public class Topic_09_Handle_Default_Radio_Checkbox {
 		}
 	}
 	
+	@Test
+	public void TC_02_Default_Kendo_jQuery() {
+		driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
+		sleepInSecond(10);
+		
+		checkToCheckBoxOrRadio("//label[text()='Dual-zone air conditioning']/preceding-sibling::input");
+		Assert.assertTrue(isElementSelected("//label[text()='Dual-zone air conditioning']/preceding-sibling::input"));
+		
+		uncheckToCheckBoxOrRadio("//label[text()='Dual-zone air conditioning']/preceding-sibling::input");
+		Assert.assertFalse(isElementSelected("//label[text()='Dual-zone air conditioning']/preceding-sibling::input"));
+	}	
+	
 	public void checkToCheckBoxOrRadio(String xpathLocator) {
 		/* Kiểm tra trước nó đã chọn hay chưa
 		 * Nếu chọn rồi thì k cần click nữa
