@@ -66,7 +66,8 @@ public class Topic_09_Handle_Alert {
 		String rgbaColor = driver.findElement(By.cssSelector("button.fhs-btn-login")).getCssValue("background-color");
 		System.out.println("RGB Color = " + rgbaColor);
 		// Convert rgbaColor to Hexa color
-		String hexaColor = Color.fromString(rgbaColor).asHex().toUpperCase();
+		String hexaColor = Color
+				.fromString(rgbaColor).asHex().toUpperCase();
 		System.out.println("Hexa color = " + hexaColor);
 		// Verify background color
 		Assert.assertEquals(hexaColor, "#C92127");
