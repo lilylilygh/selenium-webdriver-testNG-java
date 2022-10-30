@@ -18,7 +18,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_10_User_Interaction_PI {
+public class Topic_10_User_Interaction {
 	WebDriver driver;
 	// Khai báo
 	Actions action;
