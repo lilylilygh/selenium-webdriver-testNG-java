@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_02_XPath_PartI {
+public class Topic_02_XPath_Register {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
