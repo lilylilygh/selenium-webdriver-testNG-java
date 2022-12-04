@@ -92,11 +92,6 @@ public class Topic_12_Frame_Iframe {
 		sleepInSecond(3);
 	}
 
-	@Test
-	public void TC_03_() {
-		
-	}
-
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
