@@ -60,13 +60,13 @@ public class Topic_12_Frame_Iframe {
 		driver.findElement(By.cssSelector("input.input_phone")).sendKeys("0987666677");
 		new Select(driver.findElement(By.cssSelector("select#serviceSelect"))).selectByVisibleText("TƯ VẤN TUYỂN SINH");
 		driver.findElement(By.cssSelector("textarea[name='message']")).sendKeys("Register new course");
-		sleepInSecond(5);
+		sleepInSecond(3);
 		// C -> A -> Element thuộc A
 		driver.switchTo().defaultContent();
 		String keyword = "Excel";
 		driver.findElement(By.cssSelector("input#live-search-bar")).sendKeys(keyword);
 		driver.findElement(By.cssSelector("button.search-button")).click();
-		sleepInSecond(5);
+		sleepInSecond(3);
 		// Verify
 		List<WebElement> courseNames = driver.findElements(By.cssSelector("div.content>h4"));
 		// Number
@@ -79,7 +79,17 @@ public class Topic_12_Frame_Iframe {
 	}
 
 	@Test
-	public void TC_02_() {
+	public void TC_02_Frame_HDFC_Bank() {
+		driver.get("https://netbanking.hdfcbank.com/netbanking/");
+		driver.switchTo().frame("login_page");
+		driver.findElement(By.name("fldLoginUserId")).sendKeys("Linhauto");
+		driver.findElement(By.cssSelector("a.login-btn")).click();
+		sleepInSecond(3);
+		
+		WebElement passwordTextbox = driver.findElement(By.id("fldPasswordDispId"));
+		Assert.assertTrue(passwordTextbox.isDisplayed());
+		passwordTextbox.sendKeys("automationfc");
+		sleepInSecond(3);
 	}
 
 	@Test
