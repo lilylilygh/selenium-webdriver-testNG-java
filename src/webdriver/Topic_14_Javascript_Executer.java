@@ -83,22 +83,22 @@ public class Topic_14_Javascript_Executer {
 		clickToElementByJS("//button[text()='Đăng ký']");	
 		String validationMessage = getElementValidationMessage("//input[@id='lastName']");
 		Assert.assertEquals(validationMessage, "Please fill out this field.");
-		sendkeyToElementByJS("//input[@id='lastName']","Le");
+		sendkeyToElementByJS("//input[@id='lastName']","Li");
 		
 		clickToElementByJS("//button[text()='Đăng ký']");	
 		validationMessage = getElementValidationMessage("//input[@id='firstName']");
 		Assert.assertEquals(validationMessage, "Please fill out this field.");
-		sendkeyToElementByJS("//input[@id='firstName']","Loc");
+		sendkeyToElementByJS("//input[@id='firstName']","Ly");
 		
 		clickToElementByJS("//button[text()='Đăng ký']");	
 		validationMessage = getElementValidationMessage("//input[@id='email']");
 		Assert.assertEquals(validationMessage, "Please fill out this field.");
-		sendkeyToElementByJS("//input[@id='email']","leloc89@hotmail.com");
+		sendkeyToElementByJS("//input[@id='email']","lily@hotmail.com");
 		
 		clickToElementByJS("//button[text()='Đăng ký']");	
 		validationMessage = getElementValidationMessage("//input[@id='password']");
 		Assert.assertEquals(validationMessage, "Please fill out this field.");
-		sendkeyToElementByJS("//input[@id='password']","leloc89@hotmail.com");
+		sendkeyToElementByJS("//input[@id='password']","lily@hotmail.com");
 	}
 
 	@AfterClass
