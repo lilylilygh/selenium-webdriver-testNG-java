@@ -19,14 +19,6 @@ public class Topic_15_Upload_SendKey {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	
-	@BeforeClass
-	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe"); //trỏ đến file geckodriver.exe
-		driver = new FirefoxDriver(); //library
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();	
-		}
-	
 	// Image name
 	String imageName1 = "MDC_1612.JPG";
 	String imageName2 = "MDC_1911.JPG";
@@ -39,6 +31,15 @@ public class Topic_15_Upload_SendKey {
 	String image1FilePath = imageUploadFolder + imageName1;
 	String image2FilePath = imageUploadFolder + imageName2;
 	String image3FilePath = imageUploadFolder + imageName3;
+	
+	@BeforeClass
+	public void beforeClass() {
+		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe"); // trỏ đến file
+																											// geckodriver.exe
+		driver = new FirefoxDriver(); // library
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+	}
 
 	@Test
 	// Upload 1 lần 1 file
