@@ -3,6 +3,7 @@ package webdriver;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -79,7 +80,7 @@ public class Topic_09_Handle_Alert {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
 		
-		alert = driver.switchTo().alert();
+		Alert alert = driver.switchTo().alert();
 		Assert.assertEquals(alert.getText(), "I am a JS Confirm");
 		alert.dismiss();
 		Assert.assertEquals(driver.findElement(By.cssSelector("p#result")).getText(), "You clicked: Cancel");
@@ -90,7 +91,7 @@ public class Topic_09_Handle_Alert {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
 		
-		alert = driver.switchTo().alert();
+		Alert alert = driver.switchTo().alert();
 		Assert.assertEquals(alert.getText(), "I am a JS prompt");
 		String promptMessage = "Welcome to Prompt Alert";
 		alert.sendKeys(promptMessage);
@@ -125,6 +126,7 @@ public class Topic_09_Handle_Alert {
 //		http://the-internet.herokuapp.com/basic_auth
 		String userName = "admin";
 		String passWord = "admin";
+		String autoITFireFox = null;
 		Runtime.getRuntime().exec(new String[] {autoITFireFox,userName,passWord}); 	
 		
 		driver.get("http://the-internet.herokuapp.com/basic_auth");
