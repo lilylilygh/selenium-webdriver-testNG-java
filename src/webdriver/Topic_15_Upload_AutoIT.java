@@ -1,6 +1,7 @@
 package webdriver;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -15,9 +16,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_15_Upload_SendKey {
+public class Topic_15_Upload_AutoIT {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
+	String firefoxSinglePath = projectPath + "\\autoIT\\firefoxUploadOneTime.exe";
+	String firefoxMultiplePath = projectPath + "\\autoIT\\firefoxUploadMultiple.exe";
 	
 	// Image name
 	String imageName1 = "MDC_1612.JPG";
@@ -43,22 +46,15 @@ public class Topic_15_Upload_SendKey {
 
 	@Test
 	// Upload 1 lần 1 file
-	public void TC_01_Upload_Single() {
+	public void TC_01_Upload_Single() throws IOException {
 		driver.get("https://blueimp.github.io/jQuery-File-Upload/");
-		sleepInsecond(3);
+		driver.findElement(By.cssSelector("span.btn-success")).click();
 
-		By uploadFile = By.cssSelector("input[type='file']");
-
-		// Load File lên (Browser file)
-		driver.findElement(uploadFile).sendKeys(image1FilePath);
-		driver.findElement(uploadFile).sendKeys(image2FilePath);
-		driver.findElement(uploadFile).sendKeys(image3FilePath);
-		sleepInsecond(3);
+		// Upload File bằng AutoIT
+		Runtime.getRuntime().exec(new String[] { firefoxSinglePath, imageName1 });
 
 		// Verify image load lên thành công
 		Assert.assertTrue(driver.findElement(By.xpath("//p[text()='MDC_1612.JPG']")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//p[text()='MDC_1911.JPG']")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//p[text()='MDC_1912.JPG']")).isDisplayed());
 		sleepInsecond(3);
 
 		// Thực hiện upload
@@ -67,11 +63,9 @@ public class Topic_15_Upload_SendKey {
 			button.click();
 			sleepInsecond(2);
 		}
-		
+
 		// Verify image upload success
 		Assert.assertTrue(driver.findElement(By.xpath("//a[text()='MDC_1612.JPG']")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//a[text()='MDC_1911.JPG']")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.xpath("//a[text()='MDC_1912.JPG']")).isDisplayed());
 	}
 	
 	@Test

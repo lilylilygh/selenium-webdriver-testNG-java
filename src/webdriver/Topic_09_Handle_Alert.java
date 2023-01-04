@@ -24,6 +24,7 @@ public class Topic_09_Handle_Alert {
 	
 	// Khai báo + Khởi tạo: lấy dữ liệu r gán vào
 	String projectPath = System.getProperty("user.dir");
+	String autoITFirefox = projectPath + "\\autoIT\\authen_firefox.exe";
 	String osName = System.getProperty("os.name");
 
 	@BeforeClass
