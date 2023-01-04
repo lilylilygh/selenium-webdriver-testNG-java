@@ -1,5 +1,10 @@
 package webdriver;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -49,9 +54,11 @@ public class Topic_15_Upload_AutoIT {
 	public void TC_01_Upload_Single() throws IOException {
 		driver.get("https://blueimp.github.io/jQuery-File-Upload/");
 		driver.findElement(By.cssSelector("span.btn-success")).click();
+		sleepInsecond(3);
 
 		// Upload File bằng AutoIT
 		Runtime.getRuntime().exec(new String[] { firefoxSinglePath, imageName1 });
+		sleepInsecond(3);
 
 		// Verify image load lên thành công
 		Assert.assertTrue(driver.findElement(By.xpath("//p[text()='MDC_1612.JPG']")).isDisplayed());
@@ -92,12 +99,52 @@ public class Topic_15_Upload_AutoIT {
 		Assert.assertTrue(driver.findElement(By.xpath("//a[text()='MDC_1911.JPG']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//a[text()='MDC_1912.JPG']")).isDisplayed());		
 	}
+
+	@Test
+	public void TC_03_Upload_Single_JavaRobot() throws AWTException {
+		driver.get("https://blueimp.github.io/jQuery-File-Upload/");
+		
+		
+		/* Load file = Robot: Giả lập hành vi copy path của 1 file -> Java support
+		 * Giả lập hành vi paste và Enter vào Open File Dialog 
+		 */
+		
+		// Copy File Path
+		
+		driver.findElement(By.cssSelector("span.btn-success")).click();
+		sleepInsecond(3);
+		
+		// Gọi hàm
+		loadFileByRobot(image1FilePath);
+	}
 	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
 
+	public void loadFileByRobot(String filePath) throws AWTException {
+		StringSelection select = new StringSelection(filePath);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(select, null);
+		// Load File
+		Robot robot = new Robot();
+		sleepInsecond(1);
+		
+		// Nhan xuong Ctrl+V
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		
+		// Nha Ctrl+V
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_V);
+		sleepInsecond(1);
+		
+		// Nhan Enter
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		sleepInsecond(1);
+	}
+	
 	public void sleepInsecond(long timeInSecond) {
 		try {
 			Thread.sleep(timeInSecond * 1000);
