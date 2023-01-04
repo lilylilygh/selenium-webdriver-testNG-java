@@ -57,7 +57,7 @@ public class Topic_15_Upload_AutoIT {
 		sleepInsecond(3);
 
 		// Upload File bằng AutoIT
-		Runtime.getRuntime().exec(new String[] { firefoxSinglePath, imageName1 });
+		Runtime.getRuntime().exec(new String[] { firefoxSinglePath, image1FilePath });
 		sleepInsecond(3);
 
 		// Verify image load lên thành công
