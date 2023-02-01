@@ -18,11 +18,7 @@ public class Template {
 	public void beforeClass() {
 		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe"); //trỏ đến file geckodriver.exe
 		driver = new FirefoxDriver(); //library
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-		//driver.get("https://www.facebook.com/");
 		
-		// Edit
 	}
 
 	@Test
